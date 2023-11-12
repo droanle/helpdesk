@@ -1,0 +1,58 @@
+{
+  "Users": [
+    {
+      "email": "string",
+      "password": "string",
+      "name": "string",
+      "nivel": "number",
+      "relatedSectors": "id_sector"
+    }
+  ],
+  "Client": [
+    {
+      "_id": "id",
+      "name": "string",
+      "dateOfBirth": "date",
+      "city": "string",
+      "email": "string",
+      "senha": "string",
+      "status": "number"
+    }
+  ],
+  "Sectors": [
+    {
+      "nome": "",
+      "responseSpeed": [
+        {
+          "priority": "number",
+          "value": "number"
+        }
+      ],
+      "responseNumber": [
+        {
+          "priority": "number",
+          "value": "number"
+        }
+      ]
+    }
+  ],
+  "Tickets": [
+    {
+      "title": "string",
+      "creator": "id",
+      "creationDate": "date",
+      "closingDate": "date",
+      "priority": "number",
+      "status": "number",
+      "relatedUsers": "id",
+      "sectors": "id",
+      "discourse": [
+        {
+          "nome": "string",
+          "content": "",
+          "date": "date"
+        }
+      ]
+    }
+  ]
+}
