@@ -1,0 +1,126 @@
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.Container {
+  position: relative;
+  background: linear-gradient(145deg, #0c0c0c 20%, rgba(var(--primary_color), .3) 100%);
+  width: calc(100dvw - 78px);
+  height: auto;
+  left: 78px;
+  transition: all 0.5s ease;
+  padding: 50px 50px 50px 50px;
+  z-index: 2;
+
+  .ContentContainer {
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s ease;
+
+    .Title {
+      text-decoration: none;
+      display: flex;
+      width: 100%;
+      height: auto;
+
+      .IconTitle {
+        margin: 0 15px 0 0;
+        color: #f8f9fc;
+        transition: all 0.5s ease;
+      }
+
+      .IconTitle:hover {
+        color: rgba(var(--primary_color), 1);
+      }
+
+      .IconPage {
+        margin: 0 10px 0 10px;
+        color: #f8f9fc;
+      }
+    }
+
+    .Title h1 {
+      font-size: 1.5rem;
+      line-height: 2;
+      color: #f8f9fc;
+
+    }
+
+    .Main {
+      padding: 10px 30px;
+      transition: all 0.5s ease;
+
+      .content {
+        display: flex;
+        padding: 20px 20px 20px 20px;
+        backdrop-filter: blur(13.5px);
+        -webkit-backdrop-filter: blur(13.5px);
+        margin-bottom: 2%;
+
+        .Loader {
+          display: flex;
+          width: 100%;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
+      .Avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 150px !important;
+        height: 150px !important;
+        cursor: pointer;
+        transition: all 0.5s ease;
+      }
+
+      .Avatar:hover {
+        color: rgba(var(--primary_color), 1);
+        transform: scale(1.1);
+      }
+    }
+
+    .Section1 {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .Seach {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .Input {
+      border: 0 !important;
+    }
+
+    .Input:hover,
+    .Textarea:hover {
+      box-shadow: 0 0 0 2px rgb(var(--primary_color), .5);
+      border-color: rgba(var(--primary_color), 1) !important;
+    }
+
+    .FormDate {
+      width: 100%;
+      height: 100%;
+    }
+
+    .DatePicker {
+      background-color: rgba(var(--primary_color), .5) !important;
+    }
+
+    .Calendar {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
