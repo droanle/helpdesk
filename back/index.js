@@ -28,11 +28,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 // Router
-const front = require("./src/routes/front.routers");
-const api = require("./src/routes/api.routers");
+const routers = require("./src/routes/api.routers");
 
-app.use("/", front);
-app.use("/api/", api);
+app.use("/", routers);
 
 // Status 404 Scenario
 app.use((req, res) => res.status(404).render("error404"));

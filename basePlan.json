@@ -8,7 +8,7 @@
       "relatedSectors": "id_sector"
     }
   ],
-  "Client": [
+  "Clients": [
     {
       "_id": "id",
       "name": "string",

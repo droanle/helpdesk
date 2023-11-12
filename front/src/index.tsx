@@ -1,12 +1,12 @@
 /***
  * @file index.tsx
  */
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.scss';
-import reportWebVitals from './reportWebVitals';
-import Routes from './routes';
-import { ConfigProvider, theme } from 'antd';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.scss";
+import reportWebVitals from "./reportWebVitals";
+import Routes from "./routes";
+import { ConfigProvider, theme } from "antd";
 
 // cor buscada do local storage
 // const LS = require('local-storage');
@@ -15,16 +15,18 @@ import { ConfigProvider, theme } from 'antd';
 //   return LS.get("colorSistem");
 // };
 
-
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
 
 // teste sem o local storage
 const color = () => {
-  return "27, 154, 170";
-}
+  return "135, 81, 245";
+};
 
 const style = {
-  "--primary_color": color() /*ColorSystem() <- Para mudar para LocalStorage é só mudar o color() para ColorSstem()*/,
+  "--primary_color":
+    color() /*ColorSystem() <- Para mudar para LocalStorage é só mudar o color() para ColorSstem()*/,
 } as React.CSSProperties;
 
 root.render(
@@ -69,7 +71,7 @@ root.render(
           },
           Timeline: {
             colorPrimary: "rgba(var(--primary_color),1)",
-          }
+          },
         },
       }}
     >
