@@ -11,7 +11,6 @@ import {
   UserRectangle,
 } from "@phosphor-icons/react";
 import { FloatButton, Form, Button, Input, Select } from "antd";
-import Loader from "../../assets/components/Loader/Loader";
 import { Link } from "react-router-dom";
 import DataTable from "../../assets/components/Table/table";
 

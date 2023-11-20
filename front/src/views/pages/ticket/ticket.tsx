@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./ticket.module.scss";
 import Sidebar from "../../assets/components/sideBar/sideBar";
 import { Div } from "../../assets/elements/common";
 import { Ticket, SquaresFour, Briefcase, Envelope } from "@phosphor-icons/react";
 import { Button, FloatButton, Form, Select } from "antd";
 import { Link } from "react-router-dom";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const handleChange = (value: string) => {
   console.log(`${value}`);
 };
+const [value, setValue] = useState('');
 
 function TicketPage() {
   return (
@@ -79,6 +82,8 @@ function TicketPage() {
                 $border="1px solid rgba(var(--primary_color), .5)"
                 $padding="20px 20px"
               >
+                <ReactQuill theme="snow" value={value} onChange={setValue} />;
+
               </Div>
               <Form.Item className={style.Btn_container}>
                 <Button

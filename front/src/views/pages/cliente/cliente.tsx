@@ -4,7 +4,6 @@ import { Div, Divider } from "../../assets/elements/common";
 import {
   UserCircle,
   SquaresFour,
-  Users,
   IdentificationCard,
   Envelope,
   Password,
@@ -13,7 +12,6 @@ import {
   Calendar,
 } from "@phosphor-icons/react";
 import { FloatButton, Form, Button, Input, Select, DatePicker } from "antd";
-import Loader from "../../assets/components/Loader/Loader";
 import { Link } from "react-router-dom";
 import DataTable from "../../assets/components/Table/table";
 
