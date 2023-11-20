@@ -8,6 +8,17 @@ const TimelineChart: React.FC = () => {
   useEffect(() => {
     if (chartRef.current) {
       const options = {
+        theme: {
+          mode: 'dark', 
+          palette: 'palette2', 
+          String: 'dark',
+          monochrome: {
+              enabled: false,
+              color: '#255aee',
+              shadeTo: 'light',
+              shadeIntensity: 0.65
+          },
+      },
         series: [{
           name: 'Website Blog',
           type: 'column',
@@ -21,6 +32,7 @@ const TimelineChart: React.FC = () => {
           width: '500px',
           height: '100%',
           type: 'line',
+          background: 'transparent',
         },
         stroke: {
           width: [0, 4]

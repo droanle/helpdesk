@@ -13,6 +13,7 @@ import {
 import { FloatButton, Form, Button, Input, Select } from "antd";
 import Loader from "../../assets/components/Loader/Loader";
 import { Link } from "react-router-dom";
+import DataTable from "../../assets/components/Table/table";
 
 const onFinish = (values: any) => {
   console.log("Success:", values);
@@ -207,13 +208,13 @@ function Usuarios() {
               $primary
               $colorBG="#f8f9fc1d"
               $width="100%"
-              $height="350px"
+              $height="auto"
               $radius="12px"
               $border="1px solid rgba(var(--primary_color), .5)"
               $padding="20px 20px"
             >
-              <div className={style.Loader}>
-                <Loader />
+              <div className={style.table}>
+                <DataTable />
               </div>
             </Div>
           </div>

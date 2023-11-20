@@ -1,34 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import style from "./ticket.module.scss";
 import Sidebar from "../../assets/components/sideBar/sideBar";
 import { Div } from "../../assets/elements/common";
-import {
-  CameraPlus,
-  Envelope,
-  Ticket,
-  SquaresFour,
-  Password,
-  UserCircle,
-} from "@phosphor-icons/react";
-import { Avatar, Button, FloatButton, Form, Input, Modal } from "antd";
+import { Ticket, SquaresFour, Briefcase, Envelope } from "@phosphor-icons/react";
+import { Button, FloatButton, Form, Select } from "antd";
 import { Link } from "react-router-dom";
-import Loader from "../../assets/components/Loader/Loader";
+
+const handleChange = (value: string) => {
+  console.log(`${value}`);
+};
 
 function TicketPage() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-
   return (
     <div>
       <Sidebar />
@@ -47,111 +29,68 @@ function TicketPage() {
               <Ticket className={style.IconPage} size={32} weight="duotone" />
               <h1>Ticket</h1>
             </div>
-            <Div
-              className={style.content}
-              $primary
-              $colorBG="#f8f9fc1d"
-              $width="50%"
-              $height="200px"
-              $radius="12px"
-              $border="1px solid rgba(var(--primary_color), .5)"
-            >
-              <div>
-                <Avatar
-                  className={style.Avatar}
-                  size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }}
-                  icon={<CameraPlus size={64} weight="duotone" />}
-                />
-              </div>
-              <div className={style.InfoUser}>
-                <ul>
-                  <li>
-                    <h1>Nome</h1>
-                    <Input
-                      placeholder="Nome do Usuário"
-                      disabled
-                      style={{ marginLeft: "2%" }}
+            <Form name="basic" className={style.containerForm} labelCol={{ span: 0 }} wrapperCol={{ span: 0 }}>
+              <Div
+                className={style.content}
+                $primary
+                $colorBG="#f8f9fc1d"
+                $width="50%"
+                $height="auto"
+                $radius="12px"
+                $border="1px solid rgba(var(--primary_color), .5)"
+              >
+                <div className={style.form}>
+                  <Form.Item
+                    label={
+                      <Briefcase
+                        size={24}
+                        color="#f8f9fcc3"
+                        weight="duotone"
+                      />
+                    }
+                    name="Setor"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Por favor insira o Setor!",
+                      },
+                    ]}
+                    className={style.FormItem}
+                  >
+                    <Select
+                      className={style.Input}
+                      placeholder="Setor"
+                      onChange={handleChange}
+                      options={[
+                        { value: 0, label: "Admin" },
+                        { value: 1, label: "Usuário" },
+                      ]}
                     />
-                  </li>
-                  <li>
-                    <h1>Email</h1>
-                    <Input
-                      placeholder="Email@email.com"
-                      disabled
-                      style={{ marginLeft: "2%" }}
-                    />
-                  </li>
-                </ul>
-              </div>
-              <div className={style.ModalUser}>
-                <Button type="primary" onClick={showModal}>
-                  Alterar
-                </Button>
-                <Modal
-                  okType="primary"
-                  title="Alterar Informações do Usuário"
-                  open={isModalOpen}
-                  onOk={handleOk}
-                  onCancel={handleCancel}
+                  </Form.Item>
+                </div>
+              </Div>
+              <Div
+                className={style.content}
+                $primary
+                $colorBG="#f8f9fc1d"
+                $width="100%"
+                $height="370px"
+                $radius="12px"
+                $border="1px solid rgba(var(--primary_color), .5)"
+                $padding="20px 20px"
+              >
+              </Div>
+              <Form.Item className={style.Btn_container}>
+                <Button
+                  className={style.Btn_form}
+                  type="primary"
+                  htmlType="submit"
+                  block
                 >
-                  <Form layout="vertical">
-                    <Form.Item
-                      label={
-                        <UserCircle
-                          size={28}
-                          color="#f8f9fcc3"
-                          weight="duotone"
-                        />
-                      }
-                      name="Login"
-                      className={style.FormItem}
-                    >
-                      <Input className={style.Input} placeholder="Login" />
-                    </Form.Item>
-                    <Form.Item
-                      label={
-                        <Envelope
-                          size={28}
-                          color="#f8f9fcc3"
-                          weight="duotone"
-                        />
-                      }
-                      name="Login"
-                      className={style.FormItem}
-                    >
-                      <Input className={style.Input} placeholder="Login" />
-                    </Form.Item>
-                    <Form.Item
-                      label={
-                        <Password
-                          size={28}
-                          color="#f8f9fcc3"
-                          weight="duotone"
-                        />
-                      }
-                      name="Senha"
-                      className={style.InputModal}
-                    >
-                      <Input.Password placeholder="Senha" />
-                    </Form.Item>
-                  </Form>
-                </Modal>
-              </div>
-            </Div>
-            <Div
-              className={style.content}
-              $primary
-              $colorBG="#f8f9fc1d"
-              $width="100%"
-              $height="370px"
-              $radius="12px"
-              $border="1px solid rgba(var(--primary_color), .5)"
-              $padding="20px 20px"
-            >
-              <div className={style.Loader}>
-                <Loader />
-              </div>
-            </Div>
+                  Enviar Ticket <Envelope size={24} weight="duotone" />
+                </Button>
+              </Form.Item>
+            </Form>
           </div>
         </div>
       </div>

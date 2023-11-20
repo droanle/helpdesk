@@ -6,10 +6,21 @@ const Donutchart: React.FC = () => {
 
   useEffect(() => {
     const options = {
+      theme: {
+        mode: 'dark', 
+        palette: 'palette10', 
+        monochrome: {
+            enabled: false,
+            color: '#255aee',
+            shadeTo: 'light',
+            shadeIntensity: 0.65
+        },
+    },
       chart: {
         type: 'donut',
         width: '500px',
         height: '100%',
+        background: 'transparent',
       },
       plotOptions: {
         bar: {

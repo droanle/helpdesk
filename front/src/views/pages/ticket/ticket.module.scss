@@ -59,68 +59,44 @@
         -webkit-backdrop-filter: blur(13.5px);
         margin-bottom: 2%;
 
-        .Loader {
-          display: flex;
-          width: 100%;
-          justify-content: center;
-          align-items: center;
-        }
-      }
-
-      .Avatar {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 150px !important;
-        height: 150px !important;
-        cursor: pointer;
-        transition: all 0.5s ease;
-      }
-
-      .Avatar:hover {
-        color: rgba(var(--primary_color), 1);
-        transform: scale(1.1);
-      }
-
-      .InfoUser {
-        display: flex;
-        width: 100%;
-        height: 100%;
-        padding: 20px 20px 20px 20px;
-
-        ul {
-          display: flex;
-          flex-direction: column;
+        .form {
           width: 100%;
           height: 100%;
-          list-style: none;
+          display: flex;
+          justify-content: center;
+          align-items: center;
 
-          li {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 10px 10px 10px;
-            border-bottom: 1px solid #f8f9fc62;
-            transition: all 0.5s ease;
+          .FormItem {
+            width: 100%;
+
+            label:after {
+              content: " " !important;
+            }
+
+            label:before {
+              content: " " !important;
+            }
+
+            ::placeholder {
+              color: var(--white3) !important;
+              font-weight: 500;
+            }
           }
         }
       }
-
-      .ModalUser {
+      .Btn_container {
+        width: 100%;
         display: flex;
-        width: 20%;
-        height: 100%;
         justify-content: center;
-        align-items: center;
 
-        .InputModal {
-          label:after {
-            content: "4 " !important;
-          }
-
-          label:before {
-            content: "5 " !important;
-          }
+        .Btn_form {
+          width: auto;
+          padding-inline: 40px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          gap: 20px;
         }
       }
     }

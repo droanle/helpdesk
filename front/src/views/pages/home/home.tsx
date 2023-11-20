@@ -8,6 +8,7 @@ import Loader from "../../assets/components/Loader/Loader";
 import BarChart from "../../assets/components/Charts/Bar/barChart";
 import DonutChart from "../../assets/components/Charts/Donut/donutChart";
 import TimelineChart from "../../assets/components/Charts/Timeline/timelineChart";
+import Polarchart from "../../assets/components/Charts/Polar/polar";
 
 function Home() {
   return (
@@ -60,39 +61,11 @@ function Home() {
               $border="1px solid rgba(var(--primary_color), .5)"
               $padding="20px 20px"
             >
-              <TimelineChart />
+              <div className={style.charts}>
+                <Polarchart />
+                <TimelineChart />
+              </div>
             </Div>
-            <div className={style.Section1}>
-              <Div
-                className={style.content}
-                $primary
-                $colorBG="#f8f9fc1d"
-                $width="48%"
-                $height="350px"
-                $radius="12px"
-                $border="1px solid rgba(var(--primary_color), .5)"
-                $padding="20px 20px"
-              >
-                <div className={style.Loader}>
-                  <Loader />
-                </div>
-              </Div>
-              <Div
-                className={style.content}
-                $primary
-                $colorBG="#f8f9fc1d"
-                $width="48%"
-                $height="350px"
-                $radius="12px"
-                $border="1px solid rgba(var(--primary_color), .5)"
-                $padding="20px 20px"
-              >
-                <div className={style.Loader}>
-                  <Loader />
-                </div>
-              </Div>
-            </div>
-
             <Div
               className={style.content}
               $primary
