@@ -3,18 +3,22 @@ const Sector = require("../models/sector.model");
 const ObjectId = require("mongoose").Types.ObjectId;
 const JWT = require("../utils/jwt");
 
-exports.register = async (req, res) => {
+exports.session = async (req, res) => {
   try {
-    const existingUser = await User.findOne({ email: req.body.email });
+    const user = await User.findOne({ _id: req.session.user._id })
+      .select({
+        _id: 1,
+        name: 1,
+        email: 1,
+        nivel: 1,
+        relatedSectors: 1,
+      })
+      .populate("relatedSectors", {
+        _id: 1,
+        name: 1,
+      });
 
-    if (existingUser)
-      return res.status(400).json({ message: "Usuário já existe" });
-
-    const newUser = new User(req.body);
-
-    await newUser.save();
-
-    res.status(200).json({ message: "Usuário registrado com sucesso" });
+    if (user) return res.json(user);
   } catch (error) {
     res.status(500).json({
       message:
@@ -23,8 +27,43 @@ exports.register = async (req, res) => {
   }
 };
 
+exports.register = async (req, res) => {
+  try {
+    const existingUser = await User.findOne({ email: req.body.email });
+
+    if (existingUser)
+      return res.status(400).json({ message: "Usuário já existe" });
+
+    var newUser = new User(req.query);
+    var sector;
+
+    if (ObjectId.isValid(req.query.sector)) {
+      var sector = await Sector.findOne({ _id: req.query.sector });
+      if (!sector)
+        return res.status(400).json({ message: "Setor inexistente!" });
+    } else
+      return res
+        .status(400)
+        .json({ message: "Código de setor em formato inválido" });
+
+    newUser.relatedSectors = sector._id;
+
+    await newUser.save();
+
+    res
+      .status(200)
+      .json({ message: "Usuário registrado com sucesso", _id: newUser });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message:
+        "Erro interno do servidor. Por favor, tente novamente mais tarde.",
+    });
+  }
+};
+
 exports.login = async (req, res) => {
-  var { email, password } = req.body;
+  var { email, password } = req.query;
 
   try {
     var foundUser = await User.findOne({ email: email });
@@ -60,9 +99,15 @@ exports.login = async (req, res) => {
 };
 
 exports.update = async (req, res) => {
-  const newData = req.body;
+  const newData = req.query;
+
+  delete newData._id;
+
+  if (newData.password == "####") {
+    delete newData.password;
+  }
+
   const { id } = req.params;
-  return res.status(200).json(id);
 
   try {
     var sector;
@@ -101,10 +146,10 @@ exports.update = async (req, res) => {
 };
 
 exports.delete = async (req, res) => {
-  var email = req.email;
+  const { id } = req.params;
 
   try {
-    await User.deleteOne({ email: email });
+    await User.deleteOne({ _id: id });
 
     res.status(200).json({ message: "Usuário deletado com sucesso" });
   } catch (error) {

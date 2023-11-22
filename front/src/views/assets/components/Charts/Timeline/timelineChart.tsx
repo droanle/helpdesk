@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import ApexCharts from 'apexcharts';
-import moment from 'moment'; // Certifique-se de ter a biblioteca moment instalada
 
 const TimelineChart: React.FC = () => {
   const chartRef = useRef<HTMLDivElement>(null);

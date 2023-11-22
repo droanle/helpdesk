@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import style from "./ticket.module.scss";
 import Sidebar from "../../assets/components/sideBar/sideBar";
 import { Div } from "../../assets/elements/common";
@@ -11,9 +11,11 @@ import 'react-quill/dist/quill.snow.css';
 const handleChange = (value: string) => {
   console.log(`${value}`);
 };
-const [value, setValue] = useState('');
 
 function TicketPage() {
+  const [value, setValue] = useState('');
+
+  useEffect(() => {}, [value])
   return (
     <div>
       <Sidebar />
@@ -82,7 +84,7 @@ function TicketPage() {
                 $border="1px solid rgba(var(--primary_color), .5)"
                 $padding="20px 20px"
               >
-                <ReactQuill theme="snow" value={value} onChange={setValue} />;
+                <ReactQuill theme="snow" className={style.RichEditor} value={value} onChange={setValue} />
 
               </Div>
               <Form.Item className={style.Btn_container}>

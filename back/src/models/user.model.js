@@ -13,7 +13,7 @@ const schema = mongoose.Schema(
       require: true,
     },
     name: String,
-    level: Number,
+    nivel: Number,
     relatedSectors: {
       type: mongoose.Types.ObjectId,
       ref: "Sector",

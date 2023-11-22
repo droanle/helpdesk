@@ -9,13 +9,16 @@ const ticketController = require("../controllers/ticket.controller");
 const accessMiddleware = require("../middlewares/access.middleware");
 
 // USER
+router
+  .route("/user/session")
+  .get(accessMiddleware.auth, userController.session);
 router.route(["/user", "/user/:id"]).get(userController.read);
 router.route("/user/login").post(userController.login);
 router.route("/user").post(userController.register);
 router
   .route(["/user", "/user/:id"])
   .put(accessMiddleware.auth, userController.update);
-router.route("/user").delete(userController.delete);
+router.route("/user/:id").delete(userController.delete);
 
 // SECTOR
 router.route(["/sector", "/sector/:id"]).get(sectorController.read);

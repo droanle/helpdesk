@@ -38,11 +38,11 @@ const columns: ColumnsType<DataType> = [
       },
     ],
     onFilter: (value: string | number | boolean, record: DataType) => {
-        if (typeof value === 'string') {
-          return record.name.indexOf(value) === 0;
-        }
-        return false;
-      },
+      if (typeof value === 'string') {
+        return record.name.indexOf(value) === 0;
+      }
+      return false;
+    },
     sortDirections: ['descend'],
   },
   {
@@ -65,11 +65,11 @@ const columns: ColumnsType<DataType> = [
       },
     ],
     onFilter: (value: string | number | boolean, record: DataType) => {
-        if (typeof value === 'string') {
-          return record.name.indexOf(value) === 0;
-        }
-        return false;
-      },
+      if (typeof value === 'string') {
+        return record.name.indexOf(value) === 0;
+      }
+      return false;
+    },
   },
 ];
 
@@ -104,6 +104,6 @@ const onChange: TableProps<DataType>['onChange'] = (pagination, filters, sorter,
   console.log('params', pagination, filters, sorter, extra);
 };
 
-const DataTable: React.FC = () => <Table style={{width: '100%'}} columns={columns} dataSource={data} onChange={onChange} />;
+const DataTable: React.FC = () => <Table style={{ width: '100%' }} columns={columns} dataSource={data} onChange={onChange} />;
 
 export default DataTable;

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./sideBar.scss";
 import {
   UserCircle,
@@ -12,12 +12,28 @@ import {
   Users,
 } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
+import sessionHook from "../../../../api/hooks/session";
 
 const Sidebar: React.FC = () => {
+  const [userInfo, setUserInfo] = useState({
+    name: "",
+    nivel: null
+  })
+
   useEffect(() => {
     const sidebar = document.querySelector(".sidebar");
     const closeBtn = document.querySelector("#btn");
     const searchBtn = document.querySelector(".bx-search");
+
+    sessionHook()
+      .then((data: any) => {
+        setUserInfo({
+          name: data.name,
+          nivel: data.nivel
+        });
+      }).catch((error) => {
+        console.log(error);
+      });
 
     const menuBtnChange = () => {
       if (sidebar?.classList.contains("open") && closeBtn) {
@@ -131,32 +147,17 @@ const Sidebar: React.FC = () => {
           <span className="tooltip">Ticket</span>
         </li>
         <li className="profile">
-          <div className="profile_details">
-            <img src="./img/logo_min_green.png" alt="profileImg" />
-            <div className="name_job">
-              <div className="name">HelpDesk</div>
-              <div className="job">Developer</div>
+          <Link to="/" className="logout">
+            <div className="profile_details">
+              <div className="name">{userInfo.name}</div>
+              <div className="job">{userInfo.nivel == 0 ? "Admin" : "Usuario"}</div>
             </div>
-            <Link to="/">
-              <i className="icons_logout" id="log_out">
-                <SignOut size={24} weight="duotone" />
-              </i>
-            </Link>
-          </div>
+            <i className="icons_logout" id="log_out">
+              <SignOut size={24} weight="duotone" />
+            </i>
+          </Link>
         </li>
       </ul>
-    </div>
-  );
-};
-
-// usando o conteuno junto com a sidebar
-const Teste: React.FC = () => {
-  return (
-    <div>
-      <Sidebar />
-      <section className="home_section">
-        <div className="text">Dashboard</div>
-      </section>
     </div>
   );
 };

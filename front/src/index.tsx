@@ -67,7 +67,7 @@ root.render(
             colorPrimary: "rgba(var(--primary_color),1)",
           },
           Modal: {
-            headerBg: "rgba(var(--primary_color),1)",
+            colorPrimary: "rgba(var(--primary_color),1)",
           },
           Timeline: {
             colorPrimary: "rgba(var(--primary_color),1)",
@@ -79,7 +79,7 @@ root.render(
         <Routes />
       </React.StrictMode>
     </ConfigProvider>
-  </div>
+  </div >
 );
 
 reportWebVitals();
