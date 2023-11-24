@@ -2,15 +2,22 @@ const Client = require("../models/client.model");
 
 exports.create = async (req, res) => {
   try {
-    const exists = await Client.findOne({ email: req.body.email });
+    var newClientData = req.query;
+
+    newClientData.dateOfBirth = new Date(newClientData.dateOfBirth);
+
+    const exists = await Client.findOne({ email: newClientData.email });
 
     if (exists) return res.status(400).json({ message: "Cliente já existe" });
 
-    const newClient = new Client(req.body);
+    const newClient = new Client(newClientData);
     await newClient.save();
 
-    res.status(200).json({ message: "Cliente registrado com sucesso" });
+    res
+      .status(200)
+      .json({ message: "Cliente registrado com sucesso", _id: newClient._id });
   } catch (error) {
+    console.error(error);
     res.status(500).json({
       message:
         "Erro interno do servidor. Por favor, tente novamente mais tarde.",
@@ -34,22 +41,33 @@ exports.read = async (req, res) => {
 };
 
 exports.update = async (req, res) => {
-  var newData = req.body;
+  var newData = req.query;
+
+  if (newData.password == "####") {
+    delete newData.password;
+  }
+
+  const { id } = req.params;
 
   try {
-    await Client.updateOne(
-      { email: req.session.email },
+    const isUpdated = await Client.updateOne(
+      { _id: id },
       {
         $set: {
           password: newData.password,
           name: newData.name,
-          dateOfBirth: newData.dateOfBirth,
+          dateOfBirth: new Date(newData.dateOfBirth),
           city: newData.city,
         },
       }
     );
-    res.status(200).json({ message: "Cliente alterado com sucesso" });
+
+    if (isUpdated)
+      res.status(200).json({ message: "Cliente alterado com sucesso" });
+    else
+      res.status(400).json({ message: "Não foi possivel alterar o cliente" });
   } catch (error) {
+    console.error(error);
     res.status(500).json({
       message:
         "Erro interno do servidor. Por favor, tente novamente mais tarde.",

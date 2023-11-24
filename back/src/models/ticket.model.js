@@ -20,11 +20,9 @@ const schema = mongoose.Schema(
     },
     closingDate: {
       type: Date,
-      require: true,
     },
     priority: {
       type: Number,
-      require: true,
     },
     status: {
       type: Number,
@@ -38,7 +36,6 @@ const schema = mongoose.Schema(
     sectors: {
       type: mongoose.Types.ObjectId,
       require: true,
-
       ref: "Sector",
     },
     discourse: [

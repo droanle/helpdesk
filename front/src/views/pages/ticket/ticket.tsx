@@ -15,7 +15,7 @@ const handleChange = (value: string) => {
 function TicketPage() {
   const [value, setValue] = useState('');
 
-  useEffect(() => {}, [value])
+  useEffect(() => { }, [value])
   return (
     <div>
       <Sidebar />
@@ -34,6 +34,10 @@ function TicketPage() {
               <Ticket className={style.IconPage} size={32} weight="duotone" />
               <h1>Ticket</h1>
             </div>
+
+
+
+
             <Form name="basic" className={style.containerForm} labelCol={{ span: 0 }} wrapperCol={{ span: 0 }}>
               <Div
                 className={style.content}
@@ -74,6 +78,7 @@ function TicketPage() {
                   </Form.Item>
                 </div>
               </Div>
+
               <Div
                 className={style.content}
                 $primary

@@ -18,7 +18,6 @@ import { useEffect, useState } from "react";
 import sessionHook from "../../../api/hooks/session";
 import sectorHook from "../../../api/hooks/sector";
 import userHook from "../../../api/hooks/user";
-import Cookies from "cookie";
 import type { ColumnsType } from "antd/es/table";
 
 interface IUser {

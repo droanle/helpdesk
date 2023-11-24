@@ -5,7 +5,11 @@
 
 .Container {
   position: relative;
-  background: linear-gradient(145deg, #0c0c0c 20%, rgba(var(--primary_color), .3) 100%);
+  background: linear-gradient(
+    145deg,
+    #0c0c0c 20%,
+    rgba(var(--primary_color), 0.3) 100%
+  );
   width: calc(100dvw - 78px);
   height: auto;
   left: 78px;
@@ -17,7 +21,6 @@
     width: 100%;
     height: 100%;
     transition: all 0.5s ease;
-
 
     .Title {
       text-decoration: none;
@@ -45,7 +48,6 @@
       font-size: 1.5rem;
       line-height: 2;
       color: #f8f9fc;
-
     }
 
     .Main {
@@ -59,7 +61,7 @@
         -webkit-backdrop-filter: blur(13.5px);
         margin-bottom: 2%;
 
-        .table{
+        .table {
           width: 100%;
           height: 100%;
           display: flex;
@@ -68,12 +70,11 @@
         }
       }
 
-      .containerInput{
+      .containerInput {
         width: 100%;
         height: 100%;
         display: flex;
         gap: 20px;
-        
 
         .FormItem {
           width: 40%;
@@ -107,5 +108,44 @@
         }
       }
     }
+  }
+}
+
+.btn_table {
+  display: flex;
+  gap: 10px;
+
+  .Btn_table_add {
+    width: auto;
+    background-color: rgba(var(--primary_color), 1);
+    border-radius: 10px;
+    &:hover {
+      cursor: pointer;
+      animation: pulse 0.5s ease-in-out;
+    }
+  }
+
+  .Btn_table_remove {
+    width: auto;
+    background-color: #c53838;
+    border-radius: 10px;
+    &:hover {
+      cursor: pointer;
+      animation: pulse 0.5s ease-in-out;
+    }
+  }
+  .Btn_table_remove:hover {
+    background-color: #a71717c5;
+  }
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
   }
 }

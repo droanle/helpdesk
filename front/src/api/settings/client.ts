@@ -1,8 +1,8 @@
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  sectorList: (id: string | null): [Object, Object | null] => [
+  list: (id: string | null): [Object, Object | null] => [
     {
-      url: "/sector" + (id == null ? "" : "/" + id),
+      url: "/client" + (id == null ? "" : "/" + id),
       method: "GET",
       withCredentials: true,
       headers: {
@@ -19,7 +19,7 @@ export default {
     }
   ): [Object, Object | null] => [
     {
-      url: "/sector" + (id == null ? "" : "/" + id),
+      url: "/client" + (id == null ? "" : "/" + id),
       method: id == null ? "POST" : "PUT",
       withCredentials: true,
       headers: {
@@ -32,7 +32,7 @@ export default {
   ],
   delete: (id: string): [Object, Object | null] => [
     {
-      url: "/sector/" + id,
+      url: "/client/" + id,
       method: "DELETE",
       withCredentials: true,
       headers: {

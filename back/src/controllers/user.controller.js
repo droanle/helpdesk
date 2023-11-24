@@ -29,7 +29,7 @@ exports.session = async (req, res) => {
 
 exports.register = async (req, res) => {
   try {
-    const existingUser = await User.findOne({ email: req.body.email });
+    const existingUser = await User.findOne({ email: req.query.email });
 
     if (existingUser)
       return res.status(400).json({ message: "Usuário já existe" });

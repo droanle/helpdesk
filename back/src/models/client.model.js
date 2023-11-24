@@ -4,6 +4,7 @@ class ClientClass {}
 
 const schema = mongoose.Schema(
   {
+    name: String,
     email: {
       type: String,
       required: true,
@@ -20,7 +21,6 @@ const schema = mongoose.Schema(
       require: true,
       default: true,
     },
-    name: String,
     dateOfBirth: Date,
     city: String,
   },
