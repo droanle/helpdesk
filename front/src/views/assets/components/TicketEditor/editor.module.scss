@@ -1,0 +1,33 @@
+.contentForm {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+}
+.header {
+  display: flex;
+  gap: 20px;
+}
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+.Btn_container {
+  padding: 20px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .Btn_form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    padding-inline: 16px;
+    gap: 20px;
+  }
+}

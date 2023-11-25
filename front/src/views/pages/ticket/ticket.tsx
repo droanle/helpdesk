@@ -3,19 +3,93 @@ import style from "./ticket.module.scss";
 import Sidebar from "../../assets/components/sideBar/sideBar";
 import { Div } from "../../assets/elements/common";
 import { Ticket, SquaresFour, Briefcase, Envelope } from "@phosphor-icons/react";
-import { Button, FloatButton, Form, Select } from "antd";
+import { Button, FloatButton, Form, Select, Table } from "antd";
 import { Link } from "react-router-dom";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import TicketEditor from "../../assets/components/TicketEditor/editor";
 
-const handleChange = (value: string) => {
-  console.log(`${value}`);
-};
+
+interface ITi
 
 function TicketPage() {
   const [value, setValue] = useState('');
 
+
   useEffect(() => { }, [value])
+  const columns: ColumnsType<IUser> = [
+    {
+      title: "Name",
+      dataIndex: "name",
+      onFilter: (value: string | number | boolean, record: IUser) => {
+        if (typeof value === "string") {
+          return record.name.indexOf(value) === 0;
+        }
+        return false;
+      },
+      sortDirections: ["descend"],
+    },
+    {
+      title: "Email",
+      dataIndex: "email",
+      defaultSortOrder: "descend",
+    },
+    {
+      title: "Nivel",
+      dataIndex: "nivel",
+      filters: [
+        {
+          text: "Admin",
+          value: 0,
+        },
+        {
+          text: "Usuário",
+          value: 1,
+        },
+      ],
+      onFilter: (value: string | number | boolean, record: IUser) => {
+        return record.nivel === value;
+      },
+      render: (_, record: IUser) => (
+        <>{record.nivel === 0 ? "Admin" : "Usuario"}</>
+      ),
+    },
+    {
+      title: "Setor",
+      dataIndex: "sector",
+      render: (_, record: IUser) => <>{record.sector.name}</>
+    },
+    {
+      title: "Opções",
+      render: (_, record: IUser) => (
+        <div className={style.btn_table}>
+          <Button
+            className={style.Btn_table_add}
+            type="primary"
+            block
+            onClick={(e) => {
+              editRecord(record);
+            }}
+          >
+            <Pencil className={style.IconTitle} size={24} weight="duotone" />
+          </Button>
+
+          {record._id === session._id ?
+            <></> :
+            <Button
+              className={style.Btn_table_remove}
+              onClick={() => setModal(record._id ?? "")}
+              type="primary"
+              block
+            >
+              <Trash className={style.IconTitle} size={24} weight="duotone" />
+            </Button>
+          }
+        </div >
+      ),
+    },
+  ];
+
   return (
     <div>
       <Sidebar />
@@ -35,10 +109,18 @@ function TicketPage() {
               <h1>Ticket</h1>
             </div>
 
+            <Table
+              style={{ width: "100%" }}
+              columns={columns}
+              dataSource={tableData}
+            />
+
+            {/* <TicketEditor _id={"olas"} content={{}} /> */}
 
 
 
-            <Form name="basic" className={style.containerForm} labelCol={{ span: 0 }} wrapperCol={{ span: 0 }}>
+
+            {/* <Form name="basic" className={style.containerForm} labelCol={{ span: 0 }} wrapperCol={{ span: 0 }}>
               <Div
                 className={style.content}
                 $primary
@@ -102,7 +184,7 @@ function TicketPage() {
                   Enviar Ticket <Envelope size={24} weight="duotone" />
                 </Button>
               </Form.Item>
-            </Form>
+            </Form> */}
           </div>
         </div>
       </div>
